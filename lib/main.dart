@@ -1,15 +1,13 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:chopper/chopper.dart';
+import 'package:city_c_ker/models/built_city.dart';
 import 'package:flutter/material.dart';
 import 'package:city_c_ker/data/cities_api_service.dart';
-import 'package:city_c_ker/models/built_city.dart';
-import 'dart:convert';
+import 'package:city_c_ker/data/service_locator.dart';
 
 void main() async {
+  setupLocator();
   runApp(MyApp());
-  // var response;
-  // response = await CitiesApiService.create().getCities();
-  // response.forEach((e) => print(e.city));
 }
 
 class MyApp extends StatelessWidget {
@@ -34,20 +32,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CitiesApiService client = CitiesApiService.create();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<Response<BuiltList<BuiltCity>>>(
-        future: client.getCities(),
+        future: locator<CitiesApiService>().getCities(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
-            // print(snapshot.data.body[0].runtimeType);
-            // var cities = json.decode(snapshot.data.body);
-            // print(cities);
             return ListView(
-              children:
-                  snapshot.data.body.map<Widget>((a) => Text(a.toString())).toList(),
+              children: snapshot.data.body
+                  .map<Widget>((a) => Text(a.toString()))
+                  .toList(),
             );
           } else {
             return Center(child: CircularProgressIndicator());
