@@ -1,6 +1,7 @@
 import 'package:city_c_ker/data/persistent_database.dart';
 import 'package:city_c_ker/data/service_locator.dart';
 import 'package:city_c_ker/models/built_city.dart';
+import 'package:city_c_ker/ui/show_city.dart';
 import 'package:flutter/material.dart';
 
 class CityListTile extends StatelessWidget {
@@ -40,6 +41,13 @@ class CityListTile extends StatelessWidget {
                 }
               },
             ),
+            onTap: () => builtCity != null
+                ? Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ShowCity(builtCity),
+                    ),
+                  )
+                : null,
           ),
         ),
       ),

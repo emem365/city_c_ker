@@ -1,9 +1,5 @@
-import 'package:built_collection/built_collection.dart';
-import 'package:chopper/chopper.dart';
-import 'package:city_c_ker/data/cities_api_service.dart';
 import 'package:city_c_ker/data/persistent_database.dart';
 import 'package:city_c_ker/data/service_locator.dart';
-import 'package:city_c_ker/models/built_city.dart';
 import 'package:city_c_ker/widgets/city_list_tile.dart';
 import 'package:flutter/material.dart';
 

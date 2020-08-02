@@ -26,8 +26,11 @@ class CitySearchDelegate extends SearchDelegate {
                 if (snapshot.data.body.length == 0)
                   return Align(
                     alignment: Alignment.topCenter,
-                    child: Text(
-                      'No results found!',
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'No results found!',
+                      ),
                     ),
                   );
 
