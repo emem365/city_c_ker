@@ -17,14 +17,14 @@ class _$CitiesApiService extends CitiesApiService {
   final definitionType = CitiesApiService;
 
   @override
-  Future<Response<dynamic>> getCities() {
+  Future<Response<BuiltList<BuiltCity>>> getCities() {
     final $url = '/cities';
     final $request = Request('GET', $url, client.baseUrl);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<BuiltList<BuiltCity>, BuiltCity>($request);
   }
 
   @override
-  Future<Response<dynamic>> getParticularCities(
+  Future<Response<BuiltList<BuiltCity>>> getParticularCities(
       {String city, String district, String state}) {
     final $url = '/cities';
     final $params = <String, dynamic>{
@@ -33,11 +33,11 @@ class _$CitiesApiService extends CitiesApiService {
       'State': state
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<BuiltList<BuiltCity>, BuiltCity>($request);
   }
 
   @override
-  Future<Response<dynamic>> searchFromCities(
+  Future<Response<BuiltList<BuiltCity>>> searchFromCities(
       {String cityLike, String districtLike, String stateLike}) {
     final $url = '/cities';
     final $params = <String, dynamic>{
@@ -46,6 +46,6 @@ class _$CitiesApiService extends CitiesApiService {
       'State_like': stateLike
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<dynamic, dynamic>($request);
+    return client.send<BuiltList<BuiltCity>, BuiltCity>($request);
   }
 }
