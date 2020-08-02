@@ -3,15 +3,16 @@ import 'package:city_c_ker/data/service_locator.dart';
 import 'package:city_c_ker/models/built_city.dart';
 import 'package:flutter/material.dart';
 
-class CityListTile extends StatefulWidget {
+class CityListTile extends StatelessWidget {
   final BuiltCity builtCity;
   final bool isFavorite;
-  CityListTile(this.builtCity, this.isFavorite);
-  @override
-  _CityListTileState createState() => _CityListTileState();
-}
+  final FavoriteCity favoriteCityObject;
+  CityListTile(this.builtCity, this.isFavorite)
+      : favoriteCityObject = builtValueToFavoriteCity(builtCity);
+  CityListTile.fromFavoriteCity(this.favoriteCityObject)
+      : builtCity = null,
+        isFavorite = true;
 
-class _CityListTileState extends State<CityListTile> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,22 +21,22 @@ class _CityListTileState extends State<CityListTile> {
         child: Padding(
           padding: const EdgeInsets.all(4.0),
           child: ListTile(
-            title: Text(widget.builtCity.city),
-            subtitle: Text(widget.builtCity.state),
+            title: Text(favoriteCityObject.city),
+            subtitle: Text(favoriteCityObject.state),
             trailing: IconButton(
-              icon: widget.isFavorite
+              icon: isFavorite
                   ? Icon(
                       Icons.favorite,
                       color: Theme.of(context).accentColor,
                     )
                   : Icon(Icons.favorite_border),
               onPressed: () {
-                if (widget.isFavorite) {
-                  locator<PersistentDatabase>().deleteFavoriteCity(
-                      builtValueToFavoriteCity(widget.builtCity));
+                if (isFavorite) {
+                  locator<PersistentDatabase>()
+                      .deleteFavoriteCity(favoriteCityObject);
                 } else {
-                  locator<PersistentDatabase>().insertFavoriteCity(
-                      builtValueToFavoriteCity(widget.builtCity));
+                  locator<PersistentDatabase>()
+                      .insertFavoriteCity(favoriteCityObject);
                 }
               },
             ),

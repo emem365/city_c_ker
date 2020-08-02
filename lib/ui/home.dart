@@ -1,5 +1,5 @@
-
 import 'package:city_c_ker/ui/show_all_cities.dart';
+import 'package:city_c_ker/ui/show_favorites.dart';
 import 'package:city_c_ker/util/city_search_delegate.dart';
 import 'package:flutter/material.dart';
 
@@ -23,14 +23,24 @@ class _MyHomePageState extends State<MyHomePage> {
             },
             icon: Icon(Icons.search),
           ),
+          IconButton(
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => ShowFavoriteCities(),
+              ),
+            ),
+            icon: Icon(Icons.favorite_border),
+          ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(elevation: 1.0, items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.all_inclusive), title: Text('All Cities')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.favorite), title: Text('Favorites'))
-      ]),
+      floatingActionButton: FloatingActionButton.extended(
+          onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ShowFavoriteCities(),
+                ),
+              ),
+          label: Text('Favorites'),
+          icon: Icon(Icons.favorite_border)),
       body: ShowAllCities(),
     );
   }
