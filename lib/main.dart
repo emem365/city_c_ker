@@ -1,5 +1,6 @@
 
 import 'package:city_c_ker/ui/home.dart';
+import 'package:city_c_ker/ui/splash.dart';
 import 'package:flutter/material.dart';
 import 'package:city_c_ker/data/service_locator.dart';
 
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.pink,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(),
+      home: Splash(),
     );
   }
 }
