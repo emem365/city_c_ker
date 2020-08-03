@@ -1,16 +1,37 @@
-# city_c_ker
+# City Cker
 
-A new Flutter project.
+This demo application pulls a list of all indian cities and shows them to you. You can favorite the cities you like.  This demo application shows the usage of Chopper for flutter, to make http requests, Built Value for data models, Moor for flutter, to enable persistent data and get_it package for dependency injection.
+API in use can be found at [Indian Cities REST API](https://indian-cities-api-nocbegfhqg.now.sh)
+
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+This is simple flutter project. If you want to mess around with the code, just clone the repo: https://github.com/emem365/city_c_ker.git
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+All you need to get this project running is to set up flutter in your system. To get started with flutter visit [here](https://flutter.dev/docs/get-started/install)
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Installing
+
+Clone the project. Make sure you have an emulator running or a device connected to your pc
+
+Run using: 
+```
+flutter run
+```
+
+## Built With
+
+* [Flutter](https://flutter.dev/) - Google’s UI toolkit for building beautiful, natively compiled applications for mobile, web, and desktop from a single codebase.
+* [Indian Cities REST API](https://indian-cities-api-nocbegfhqg.now.sh) - API in use
+
+
+## Authors
+
+* **Madhur Maurya** - *Creator* - [emem365](https://github.com/emem365)
+
+
+## Acknowledgments
+
+* Again, a huge thanks to [Indian Cities REST API](https://indian-cities-api-nocbegfhqg.now.sh) whose free api we use :)
