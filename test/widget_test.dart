@@ -1,30 +1,37 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
+import 'package:city_c_ker/models/built_city.dart';
+import 'package:city_c_ker/models/serializer.dart';
+import 'package:city_c_ker/widgets/city_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:city_c_ker/main.dart';
+import 'dart:convert';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
-
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
-
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Testing CityListTile', (WidgetTester tester) async {
+    const jsonString =
+        """{"City": "SGM","State": "Rajasthan","District": "Ganganagar"}""";
+    BuiltCity parsedBuiltCity = serializers.deserializeWith(
+        serializers.serializerForType(BuiltCity), json.decode(jsonString));
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: CityListTile(parsedBuiltCity, false),
+        ),
+      ),
+    );
+    expect(find.text('SGM'), findsOneWidget);
+    expect(find.text('Rajasthan'), findsOneWidget);
+    expect(find.byIcon(Icons.favorite), findsNothing);
+    expect(find.byIcon(Icons.favorite_border), findsOneWidget);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Material(
+          child: CityListTile(parsedBuiltCity, true),
+        ),
+      ),
+    );
+    expect(find.text('SGM'), findsOneWidget);
+    expect(find.text('Rajasthan'), findsOneWidget);
+    expect(find.byIcon(Icons.favorite), findsOneWidget);
+    expect(find.byIcon(Icons.favorite_border), findsNothing);
   });
 }

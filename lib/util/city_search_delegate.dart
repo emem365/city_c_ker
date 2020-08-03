@@ -96,40 +96,6 @@ class CitySearchDelegate extends SearchDelegate {
             });
       },
     );
-    return StreamBuilder<List<FavoriteCity>>(
-        stream: locator<PersistentDatabase>().watchAllFavoriteCities(),
-        builder: (context, streamSnapshot) {
-          if (streamSnapshot.hasData)
-            return FutureBuilder<Response<BuiltList<BuiltCity>>>(
-              future:
-                  locator<CitiesApiService>().searchFromCities(cityLike: query),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.done) {
-                  if (snapshot.data.body.length == 0)
-                    return Align(
-                      alignment: Alignment.topCenter,
-                      child: Text(
-                        'No results to show!',
-                      ),
-                    );
-
-                  return ListView.builder(
-                    itemCount: snapshot.data.body.length,
-                    itemBuilder: (context, index) => CityListTile(
-                      snapshot.data.body[index],
-                      streamSnapshot.data.contains(
-                        builtValueToFavoriteCity(snapshot.data.body[index]),
-                      ),
-                    ),
-                  );
-                } else {
-                  return Center(child: CircularProgressIndicator());
-                }
-              },
-            );
-          else
-            return Container();
-        });
   }
 
   @override

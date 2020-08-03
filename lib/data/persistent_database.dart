@@ -38,15 +38,6 @@ class PersistentDatabase extends _$PersistentDatabase {
   Future deleteFavoriteCity(FavoriteCity favoriteCity) =>
       delete(favoriteCities).delete(favoriteCity);
 
-  // Future<bool> exists(FavoriteCity favoriteCity) async {
-  //   final query = select(favoriteCities)
-  //     ..where((tbl) => tbl.city.equals(favoriteCity.city))
-  //     ..where((tbl) => tbl.state.equals(favoriteCity.state))
-  //     ..where((tbl) => tbl.district.equals(favoriteCity.district));
-
-  //   final List<FavoriteCity> cities = await query.get();
-  //   return (cities.length > 0);
-  // }
 }
 
 FavoriteCity builtValueToFavoriteCity(BuiltCity builtCity) {
